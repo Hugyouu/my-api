@@ -21,4 +21,13 @@ app.include_router(watchlist.router, prefix="/watchlist", tags=["watchlist"])
 
 @app.get("/")
 async def root():
-    return RedirectResponse(url="/docs")
+    return {
+        "message": "API opérationnelle", 
+        "status": "running",
+        "docs": "https://api.hugo-pierret.be/docs",
+        "version": "1.0.0"
+    }
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}
